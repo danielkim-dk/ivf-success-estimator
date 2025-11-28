@@ -114,6 +114,12 @@ export default function QuestionnairePage() {
 
       if (!allFieldsValid) return false
 
+      // Cross-field height validation (4'6" to 6'0")
+      if (inputs.height_feet !== undefined && inputs.height_inches !== undefined) {
+        if (inputs.height_feet === 4 && inputs.height_inches < 6) return false
+        if (inputs.height_feet === 6 && inputs.height_inches > 0) return false
+      }
+
       if (stepValidationError) {
         return false
       }

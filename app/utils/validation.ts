@@ -46,6 +46,16 @@ export function validateUserInputs(inputs: Partial<UserInputs>): ValidationError
     errors.push({ field: 'height_inches', message: VALIDATION_CONSTRAINTS.height_inches.errorMessage })
   }
 
+  // Cross-field height validation (4'6" to 6'0")
+  if (inputs.height_feet !== undefined && inputs.height_inches !== undefined) {
+    if (inputs.height_feet === 4 && inputs.height_inches < 6) {
+      errors.push({ field: 'height_inches', message: 'Minimum height is 4\'6"' })
+    }
+    if (inputs.height_feet === 6 && inputs.height_inches > 0) {
+      errors.push({ field: 'height_inches', message: 'Maximum height is 6\'0"' })
+    }
+  }
+
   // Weight
   if (inputs.weight_lbs === undefined || inputs.weight_lbs === null) {
     errors.push({ field: 'weight_lbs', message: 'Please enter your weight' })

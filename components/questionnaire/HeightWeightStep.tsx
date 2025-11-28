@@ -20,17 +20,30 @@ export function HeightWeightStep({ values, onChange }: HeightWeightStepProps) {
 
   const { height_feet, height_inches, weight_lbs } = VALIDATION_CONSTRAINTS
 
+  // Basic range validation
   const heightFeetError =
     values.height_feet !== undefined &&
     (values.height_feet < height_feet.min || values.height_feet > height_feet.max)
       ? height_feet.errorMessage
       : undefined
 
-  const heightInchesError =
-    values.height_inches !== undefined &&
-    (values.height_inches < height_inches.min || values.height_inches > height_inches.max)
-      ? height_inches.errorMessage
-      : undefined
+  // Inches range validation + cross-field validation for 4'6" to 6'0" range
+  const getHeightInchesError = (): string | undefined => {
+    if (values.height_inches === undefined) return undefined
+    if (values.height_inches < height_inches.min || values.height_inches > height_inches.max) {
+      return height_inches.errorMessage
+    }
+    // Cross-field: minimum 4'6"
+    if (values.height_feet === 4 && values.height_inches < 6) {
+      return 'Minimum height is 4\'6"'
+    }
+    // Cross-field: maximum 6'0"
+    if (values.height_feet === 6 && values.height_inches > 0) {
+      return 'Maximum height is 6\'0"'
+    }
+    return undefined
+  }
+  const heightInchesError = getHeightInchesError()
 
   const weightError =
     values.weight_lbs !== undefined &&

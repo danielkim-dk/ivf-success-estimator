@@ -15,9 +15,9 @@ export const VALIDATION_CONSTRAINTS = {
   },
   height_feet: {
     min: 4,
-    max: 7,
+    max: 6,
     label: 'Height (feet)',
-    errorMessage: 'Please enter a height between 4 and 7 feet',
+    errorMessage: 'Please enter a height between 4\'6" and 6\'0"',
   },
   height_inches: {
     min: 0,
