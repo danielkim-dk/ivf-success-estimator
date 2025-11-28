@@ -1,26 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FEF9F6;
+  --foreground: #1a1a1a;
+  --sunfish-orange: #F86504;
+  --sunfish-blue: #6086FF;
+  --sunfish-periwinkle: #9DB4FF;
+  --sunfish-charcoal: rgba(26, 26, 26, 0.7);
+  --sunfish-light-bg: #F9FAFB;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-sunfish-orange: var(--sunfish-orange);
+  --color-sunfish-blue: var(--sunfish-blue);
+  --color-sunfish-periwinkle: var(--sunfish-periwinkle);
+  --color-sunfish-charcoal: var(--sunfish-charcoal);
+  --color-sunfish-light-bg: var(--sunfish-light-bg);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
